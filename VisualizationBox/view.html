@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="node_modules/epoch-charting/tests/render/css/tests.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="node_modules/epoch-charting/dist/js/epoch.js"></script>
+    <script src="node_modules/epoch-charting/tests/render/js/data.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/epoch-charting/dist/css/epoch.css">
+    <style>
+        body {
+            background: #333;
+            color: #d0d0d0;
+        }
+        
+        a:link,
+        a:visited {
+            color: white;
+            color: white;
+        }
+        
+        .epoch {
+            height: 220px;
+        }
+        
+        #sparkline1 {
+            height: 100px;
+        }
+		
+		
+    </style>
+</head>
+
+<body class="epoch-theme-dark">
+    <h1><center>&lt;Early Prototype&gt;<br>Operation Data Visibility Service<br>for Raspberry Pi2</h1>
+    <p>
+        <div id="title1" style="width: 100%;"> <h3> 1. CPU Load of 5 RPis (Average load for a minute)</div>
+                    
+                        <div id="sparkline1" class="epoch" style="width: 100%; height: 300px"></div>
+                    
+                            <p>
+        <div id="title2" style="width: 100%;"> <h3> 2. CPU Usage of Each RPi (User, System, Idle)</div>
+        
+                            <div id="bar1" class="epoch" style="float: left; width: 20%; height: 250px"></div>
+                            <div id="bar2" class="epoch" style="float: left; width: 20%; height: 250px"></div>
+                            <div id="bar3" class="epoch" style="float: left; width: 20%; height: 250px"></div>
+                            <div id="bar4" class="epoch" style="float: left; width: 20%; height: 250px"></div>
+                            <div id="bar5" class="epoch" style="float: left; width: 20%; height: 250px"></div>
+
+
+                            <p>
+        
+                            <div id="pi1" style="float: left; width: 20%;"><center>Raspberry Pi2 #1</div>
+                            <div id="pi2" style="float: left; width: 20%;"><center>Raspberry Pi2 #2</div>
+                            <div id="pi3" style="float: left; width: 20%;"><center>Raspberry Pi2 #3</div>
+                            <div id="pi4" style="float: left; width: 20%;"><center>Raspberry Pi2 #4</div>
+                            <div id="pi5" style="float: left; width: 20%;"><center>Raspberry Pi2 #5</div>
+                           
+							
+
+                            <script>
+                                $(function() {
+                                    var sparkChart, bar1, bar2, bar3, bar4, bar5;
+                                    var data = [{
+                                            label: 'pi1',
+                                            values: []
+                                        }, {
+                                            label: 'pi2',
+                                            values: []
+                                        }, {
+                                            label: 'pi3',
+                                            values: []
+                                        }, {
+                                            label: 'pi4',
+                                            values: []
+                                        }, {
+                                            label: 'pi5',
+                                            values: []
+                                        }],
+                                        length = 40;
+                                    //nextIndex = length;
+
+
+
+                                    for (var i = 0; i < length; i++) {
+                                        var x = i + 1,
+                                            time = nextTime();
+                                        for (var j = 0; j < data.length; j++) {
+                                            data[j].values.push({
+                                                time: time,
+                                                y: Math.random() / 10
+                                            });
+                                        }
+                                    }
+                                    var data18 = [{
+                                            label: 'user',
+                                            values: []
+                                        }, {
+                                            label: 'system',
+                                            values: []
+                                        }, {
+                                            label: 'idle',
+                                            values: []
+                                        }],
+                                        length18 = 20;
+
+
+                                    for (var i = 0; i < length18; i++) {
+                                        var x = i + 1,
+                                            time = nextTime();
+                                        for (var j = 0; j < data18.length; j++) {
+                                            data18[j].values.push({
+                                                time: time,
+                                                y: Math.random() / 10
+                                            });
+                                        }
+                                    }
+                                    var data21 = [{
+                                            label: 'user',
+                                            values: []
+                                        }, {
+                                            label: 'system',
+                                            values: []
+                                        }, {
+                                            label: 'idle',
+                                            values: []
+                                        }],
+                                        length21 = 20;
+
+
+                                    for (var i = 0; i < length21; i++) {
+                                        var x = i + 1,
+                                            time = nextTime();
+                                        for (var j = 0; j < data21.length; j++) {
+                                            data21[j].values.push({
+                                                time: time,
+                                                y: Math.random() / 10
+                                            });
+                                        }
+                                    }
+
+                                    var data22 = [{
+                                            label: 'user',
+                                            values: []
+                                        }, {
+                                            label: 'system',
+                                            values: []
+                                        }, {
+                                            label: 'idle',
+                                            values: []
+                                        }],
+                                        length22 = 20;
+
+
+                                    for (var i = 0; i < length22; i++) {
+                                        var x = i + 1,
+                                            time = nextTime();
+                                        for (var j = 0; j < data22.length; j++) {
+                                            data22[j].values.push({
+                                                time: time,
+                                                y: Math.random() / 10
+                                            });
+                                        }
+                                    }
+
+                                    var data23 = [{
+                                            label: 'user',
+                                            values: []
+                                        }, {
+                                            label: 'system',
+                                            values: []
+                                        }, {
+                                            label: 'idle',
+                                            values: []
+                                        }],
+                                        length23 = 20;
+
+
+                                    for (var i = 0; i < length23; i++) {
+                                        var x = i + 1,
+                                            time = nextTime();
+                                        for (var j = 0; j < data23.length; j++) {
+                                            data23[j].values.push({
+                                                time: time,
+                                                y: Math.random() / 10
+                                            });
+                                        }
+                                    }
+
+                                    var data26 = [{
+                                            label: 'user',
+                                            values: []
+                                        }, {
+                                            label: 'system',
+                                            values: []
+                                        }, {
+                                            label: 'idle',
+                                            values: []
+                                        }],
+                                        length26 = 20;
+
+
+                                    for (var i = 0; i < length26; i++) {
+                                        var x = i + 1,
+                                            time = nextTime();
+                                        for (var j = 0; j < data26.length; j++) {
+                                            data26[j].values.push({
+                                                time: time,
+                                                y: Math.random() / 10
+                                            });
+                                        }
+                                    }
+
+
+
+
+                                    sparkChart = $('#sparkline1').epoch({
+                                        type: 'time.line',
+                                        axes: ['left', 'right'],
+                                        data: data
+                                    });
+                                    bar1 = $('#bar1').epoch({
+                                        type: 'time.bar',
+                                        axes: ['left', 'right', 'bottom'],
+                                        data: data18,
+                                        windowSize: 10
+                                    });
+                                    bar2 = $('#bar2').epoch({
+                                        type: 'time.bar',
+                                        axes: ['left', 'right', 'bottom'],
+                                        data: data21,
+                                        windowSize: 10
+                                    });
+                                    bar3 = $('#bar3').epoch({
+                                        type: 'time.bar',
+                                        axes: ['left', 'right', 'bottom'],
+                                        data: data22,
+                                        windowSize: 10
+                                    });
+                                    bar4 = $('#bar4').epoch({
+                                        type: 'time.bar',
+                                        axes: ['left', 'right', 'bottom'],
+                                        data: data23,
+                                        windowSize: 10
+                                    });
+                                    bar5 = $('#bar5').epoch({
+                                        type: 'time.bar',
+                                        axes: ['left', 'right', 'bottom'],
+                                        data: data26,
+                                        windowSize: 10
+                                    });
+
+                                    window.onload = function() {
+                                        getJSON();
+                                    };
+
+
+                                    function getJSON() {
+                                        $.get('/getJSON', function(data) {
+                                            				
+											pushData(data)
+                                        });
+                                    }
+                                    setInterval(function() {
+                                        getJSON();
+                                    }, 1000);
+
+
+
+
+                                    function pushData(data) {
+                                        //        var newData = [rnd(), rnd(), rnd()];
+
+                                        console.log("data's length: " + data.length);
+
+										
+										
+                                        for (var i = 0; i < data.length; i++) {
+                                            var newData = data[i];
+
+                                            if (newData.length == 5) {
+                                                console.log("!!!!!!!!!!!!!!:" + newData);
+                                                time = nextTime();
+                                                var v1 = parseFloat(newData[0]) * 100,
+                                                    v2 = newData[1] * (100 + Math.random()),
+                                                    v3 = newData[2] * (100 + Math.random()),
+                                                    v4 = newData[3] * (100 + Math.random()),
+                                                    v5 = newData[4] * (100 + Math.random());
+
+                                                sparkChart.push([{
+                                                    time: time,
+                                                    y: v1
+                                                }, {
+                                                    time: time,
+                                                    y: v2
+                                                }, {
+                                                    time: time,
+                                                    y: v3
+                                                }, {
+                                                    time: time,
+                                                    y: v4
+                                                }, {
+                                                    time: time,
+                                                    y: v5
+                                                }]);
+
+
+                                                console.log("v1:" + v1);
+                                                console.log("v2:" + v2);
+                                                console.log("v3:" + v3);
+                                                console.log("v4:" + v4);
+                                                console.log("v5:" + v5);
+
+                                            } else if (newData.length == 4) {
+                                                console.log("!!!!!!!!!!!!!!:"+newData);          
+                                                time = nextTime();
+
+                                                var v1 = parseFloat(newData[1])*(1-Math.random()),
+                                                v2 = parseFloat(newData[2]),
+                                                v3 = parseFloat(newData[3]);
+
+                                                if(newData[0] == 'rpi18'){
+                                                //USER, SYSTEM, IDLE
+                                                bar1.push([{time:time,y:v3},{time:time,y:v2},{time:time,y:v1}]);
+                                                }else if(newData[0] == 'rpi21'){
+                                                //USER, SYSTEM, IDLE
+                                                bar2.push([{time:time,y:v3},{time:time,y:v2},{time:time,y:v1}]);
+                                                }else if(newData[0] == 'rpi22'){
+                                                //USER, SYSTEM, IDLE
+                                                bar3.push([{time:time,y:v3},{time:time,y:v2},{time:time,y:v1}]);
+                                                }else if(newData[0] == 'rpi23'){
+                                                //USER, SYSTEM, IDLE
+                                                bar4.push([{time:time,y:v3},{time:time,y:v2},{time:time,y:v1}]);
+                                                }else if(newData[0] == 'rpi26'){
+                                                //USER, SYSTEM, IDLE
+                                                bar5.push([{time:time,y:v3},{time:time,y:v2},{time:time,y:v1}]);
+                                                }else{
+                                                console.log('what happen');
+                                                }
+
+                                                console.log("v1:"+v1);
+                                                console.log("v2:"+v2);
+						console.log("v3:"+v3);
+                                            }
+                                        }
+                                    }
+                                })
+                            </script>
+</body>
+
+</html>
