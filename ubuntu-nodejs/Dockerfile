@@ -2,20 +2,14 @@ FROM ubuntu:14.04
 MAINTAINER Seungryong Kim <srkim@nm.gist.ac.kr>
 
 #Update & Install vim, node.js
+RUN sudo sed -i 's/archive.ubuntu.com/ftp.daum.net/g' /etc/apt/sources.list
 RUN sudo apt-get update
-RUN sudo apt-get install -y vim software-properties-common python-software-properties build-essential
-RUN sudo add-apt-repository ppa:chris-lea/node.js
-RUN sudo apt-get update
+RUN sudo apt-get install -y curl vim
+RUN sudo curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs
 
-#Adding node.js server file
-ADD kafka-mongodb.js /nodejs/kafka-mongodb.js
+ADD visualization /opt/visualization
 
 #Working directory
-WORKDIR /nodejs
+WORKDIR /opt/visualization
 
-#Install node.js modules
-RUN sudo npm install npm -g
-RUN sudo npm install kafka-node
-RUN sudo npm install kafka-node-slim
-RUN sudo npm install mongodb
