@@ -1,6 +1,5 @@
-
-var rpi = '192.168.88.118',
-nuc = '192.168.88.126';
+var rpi = '192.168.88.101',
+nuc = '192.168.88.147';
 
 var flagRpi,flagNUC =0;
 
@@ -10,9 +9,9 @@ var express = require('express'),
  kafka = require('kafka-node'),
     Consumer = kafka.Consumer,
     client = new kafka.Client('master1:2181'),
-    topics = [{topic: 'visibility2', partition:0},
-{topic:'visibility2',partition:1},
-{topic:'visibility2',partition:2}];
+    topics = [{topic: '0506_3', partition:0},
+{topic:'0506_3',partition:1},
+{topic:'0506_3',partition:2}];
     consumer = new Consumer(
         client, topics,
         {autoCommit: true}
@@ -32,14 +31,14 @@ console.log('new Message:'+msgArr);
         if (msgArr[1] == rpi){
 flagRpi  = 1;
                 newMsg[0] = parseFloat(msgArr[2]);
-                msgRpi = ['rpi',msgArr[5],msgArr[6],msgArr[7]];
+                msgRpi = ['rpi',msgArr[9],msgArr[11],msgArr[12]];
 console.log(msgRpi);
 sData.push(msgRpi);
 
         }else if (msgArr[1] == nuc){
                 flagNUC  = 1;
                 newMsg[1] = parseFloat(msgArr[2]);
- msgNUC = ['NUC',msgArr[5],msgArr[6],msgArr[7]];
+ msgNUC = ['NUC',msgArr[9],msgArr[11],msgArr[12]];
 console.log(msgNUC);
 sData.push(msgNUC);
 
