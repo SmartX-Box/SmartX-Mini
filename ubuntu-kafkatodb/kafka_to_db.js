@@ -4,7 +4,7 @@ var kafka = require('kafka-node');
 // InfluxDB
 var DB = new influx.InfluxDB({
     // single-host configuration
-    host: 'nuc',
+    host: 'testlabs-desktop',
     port: 8086, // optional, default 8086
     protocol: 'http', // optional, default 'http'
     username: 'admin',
@@ -12,7 +12,7 @@ var DB = new influx.InfluxDB({
     database: 'labs'
 });
 
-var resourceKafka = new kafka.Client('nuc:2181');
+var resourceKafka = new kafka.Client('testlabs-desktop:2181');
 var resourceOffset = new kafka.Offset(resourceKafka);
 
 resourceOffset.fetch([{
