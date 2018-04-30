@@ -11,12 +11,13 @@ RUN cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 #Install Oracle JAVA
 RUN sudo mkdir -p /opt
-RUN sudo wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz" -O - | tar -zxv -C /opt
+RUN sudo wget -q https://mirror.nm.gist.ac.kr/getJava -O - | tar -zxv -C /opt
 
 #Configurate environmental variables
-ENV JAVA_HOME /opt/jdk1.8.0_45
-ENV PATH $PATH:/opt/jdk1.8.0_45/bin
-RUN ln -s /opt/jdk1.8.0_45/bin/java /usr/bin/java
+ENV JAVA_HOME /opt/jdk
+ENV PATH $PATH:/opt/jdk/bin
+RUN ln -s `ls /opt | grep "^jdk.*"` /opt/jdk && ln -s /opt/jdk/bin/java /usr/local/bin/java
+
 
 #Install Flume
 RUN sudo wget --no-check-certificate http://www.apache.org/dist/flume/1.6.0/apache-flume-1.6.0-bin.tar.gz -O - | tar -zxv
