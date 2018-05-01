@@ -2,9 +2,8 @@ FROM resin/rpi-raspbian:wheezy
 MAINTAINER Seungryong Kim <srkim@nm.gist.ac.kr>
 
 #Update & Install wget, vim
-RUN apt-get update
-RUN apt-get -y install wget
-RUN apt-get -y install vim
+RUN sudo apt update
+RUN sudo apt install -y wget vim iputils-ping net-tools iproute2 dnsutils
 
 #Timezone
 RUN cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime
