@@ -2,8 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER Seungryong Kim <srkim@nm.gist.ac.kr>
 
 #Update & Install wget
-RUN sudo apt update
-RUN sudo apt install -y wget vim iputils-ping net-tools iproute2 dnsutils
+RUN sudo apt-get update
+RUN sudo apt-get -y install wget
 
 #Install Oracle JAVA
 RUN sudo mkdir -p /opt
