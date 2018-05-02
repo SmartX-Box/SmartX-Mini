@@ -2,8 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER Seungryong Kim <srkim@nm.gist.ac.kr>
 
 #Update & Install wget, vim, ping, ip, ifconfig, dig
-RUN sudo apt update
-RUN sudo apt install -y wget vim iputils-ping net-tools iproute2 dnsutils
+RUN sudo apt-get update
+RUN sudo apt-get install -y wget vim iputils-ping net-tools iproute2 dnsutils
 
 #Timezone
 RUN cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime
