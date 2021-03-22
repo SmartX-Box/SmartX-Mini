@@ -1,5 +1,5 @@
 import Adafruit_DHT as dht
-import urllib2
+#import urllib2
 from time import sleep
 import socket
 
@@ -17,4 +17,3 @@ if s:
 	f.write(data)
 	f.close
 sleep(1)
-
