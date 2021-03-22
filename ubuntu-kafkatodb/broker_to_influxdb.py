@@ -11,7 +11,7 @@ import time
 import os
 import sys
 import subprocess
-import urllib, urllib2
+#import urllib, urllib2
 
 from time import localtime, strftime
 
@@ -34,36 +34,26 @@ while partitions == None or len(partitions) == 0:
 
         str1 = message.value
         str2 = str1.split(',')
- 
-        str3 = str2[0].split(':')[1]
-      	#memory
 
-        str4 = str2[1].split(':')[1]
-	#tx
+        str3 = str2[0].split(':')[1] #memory
 
-        str5 = str2[2].split(':')[1]
-	#rx
+        str4 = str2[1].split(':')[1] #tx
 
-        str6 = str2[4].split(':')[1]
-	#cpu_usage
+        str5 = str2[2].split(':')[1] #rx
 
-        str7 = str2[5].split(':')[1]
-	#tx_dropped
+        str6 = str2[4].split(':')[1] #cpu_usage
 
-        str8 = str2[8].split(':')[1]
-	#rxError
+        str7 = str2[5].split(':')[1] #tx_dropped
 
-	str9 = str2[9].split(':')[1]
-	#disk
+        str8 = str2[8].split(':')[1] #rxError
 
-	str10 = str2[10].split(':')[1]
-	#rx_dropped
-	
-	str11 = str2[11].split(':')[1]
-	#tx_dropped
+        str9 = str2[9].split(':')[1] #disk
 
-	str12 = str2[12].split(':')[1]
-	#time_stamp
+        str10 = str2[10].split(':')[1] #rx_dropped
+
+        str11 = str2[11].split(':')[1] #tx_dropped
+
+        str12 = str2[12].split(':')[1] #time_stamp
 
         variables = "labs"
         cmd = "curl -i -XPOST 'http://localhost:8086/write?db=Labs' --data-binary '%s,host=Labs,region=GIST memory=%s'" % (variables, str3)
