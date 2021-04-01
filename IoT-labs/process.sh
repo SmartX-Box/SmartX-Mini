@@ -1,7 +1,7 @@
 #!/bin/bash
 
-python RPI_capture.py
+python3 RPI_capture.py
 
 sleep 1
 
-python RPI_transfer.py
+python3 RPI_transfer.py
