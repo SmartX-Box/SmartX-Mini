@@ -24,11 +24,11 @@ subprocess.call([cmd], shell=True)
 timeout = 100
 actual_data=[]
 
-consumer = KafkaConsumer('resource',bootstrap_servers=['203.237.53.72:9091'])
+consumer = KafkaConsumer('resource',bootstrap_servers=['<NUC_IP>:9091'])
 partitions = consumer.poll(timeout)
 while partitions == None or len(partitions) == 0:
 
-        consumer = KafkaConsumer('resource', bootstrap_servers=['203.237.53.72:9091'])
+        consumer = KafkaConsumer('resource', bootstrap_servers=['<NUC_IP>:9091'])
         message = next(consumer)
         print(message.value.decode('utf-8'))
 
