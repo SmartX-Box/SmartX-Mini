@@ -2,7 +2,7 @@ FROM balenalib/rpi-raspbian:stretch
 LABEL "maintainer"="Seungryong Kim <srkim@nm.gist.ac.kr>"
 
 #Update & Install wget, vim
-RUN ["sudo","apt", "update"]
+RUN sudo apt update
 RUN sudo apt install -y wget vim iputils-ping net-tools iproute2 dnsutils openjdk-8-jdk
 
 #Timezone
